@@ -126,10 +126,15 @@ public class Person {
     public static boolean checkVowels(String k)
     {
         List<Character> al = Arrays.asList('a','e','i','o','u','A','E','I','O','U');
-        for(int i=0;i<k.length();i++)
-            if(al.contains(k.charAt(i))==true)
-                return true;
-            return false;
+//         for(int i=0;i<k.length();i++)
+//             if(al.contains(k.charAt(i))==true)
+//                 return true;
+//             return false;
+        
+        // You can write the above logic also using streams in the following way
+
+        OptionalInt index = IntStream.range(0, k.length()).filter(i -> al.contains(k.charAt(i))).findAny();
+        return (index.isPresent()) ? true : false;
     }
 
     //3rd Sorting based on  Age if same then to check age in desc
@@ -167,6 +172,7 @@ public class Person {
     }
 
     //7th
+    // I think you misread the question, the question was to find the country with maximum no of people
     public static String oldestPerson(List<Person> p)
     {
         Optional<String> optionalName =  p.stream()
